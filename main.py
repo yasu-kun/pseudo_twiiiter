@@ -28,17 +28,15 @@ def tweet_post():
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                   
   cur.execute("INSERT into tweet_table (tweet, tweet_time) VALUES ('%s', '%s')" % (tweet, tweet_time))
-  #out = cur.fetchall()
+
+  cur.execute('SELECT * FROM tweet_table')
+  out = cur.fetchall()
+  out.reverse()
 
   con.commit()                                                                                                                               
   con.close()
 
-  return render_template('index.html')
-
-
-
-
-
+  return render_template('index.html',data=out)
 
 if __name__ == '__main__':
   app.run()
