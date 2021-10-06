@@ -13,7 +13,7 @@ def tweet_get():
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                      
   cur.execute('SELECT * FROM tweet_table')
-  out = cur.fetchall().reverse()
+  out = cur.fetchall()
   out.reverse()
   con.commit()                                                                                                                               
   con.close()
