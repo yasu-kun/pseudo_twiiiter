@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request 
 from flask_ngrok import run_with_ngrok
 import sqlite3
-import time
+from datetime import datetime, timedelta, timezone
+
 
 app = Flask(__name__)
 run_with_ngrok(app)
@@ -24,7 +25,13 @@ def tweet_get():
 @app.route('/', methods=['POST'])
 def tweet_post():
   tweet = request.form['tweet']
-  tweet_time = time.strftime('%Y/%m/%d %H:%M:%S')
+  dt_utc = datetime.now(timezone.utc)
+
+  # UTC -> JST
+  #JST = timezone(timedelta(hours=+9))
+  jst = dt_utc.astimezone(timezone(timedelta(hours=+9)))
+  tweet_time = jst.strftime('%Y/%m/%d %H:%M:%S')
+  
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                   
   cur.execute("INSERT into tweet_table (tweet, tweet_time) VALUES ('%s', '%s')" % (tweet, tweet_time))
