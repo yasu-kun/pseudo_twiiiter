@@ -16,6 +16,7 @@
     <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
     <div class="twitter__contents scroll">
 
+      {% for id, tweet, time in data %}
       <!-- 記事エリア -->
       <div class="twitter__block">
         <figure>
@@ -23,9 +24,9 @@
         </figure>
         <div class="twitter__block-text">
           <div class="name">test<span class="name_reply">@user</span></div>
-          <div class="date">10分前</div>
+          <div class="date">{{ time }}</div>
           <div class="text">
-            hello world!<br>
+            {{ tweet }}<br>
           </div>
           <div class="twitter__icon">
             <span class="twitter-bubble"></span>
@@ -34,7 +35,7 @@
           </div>
         </div>
       </div>
-
+      {% endfor %}
 
 
     </div>
