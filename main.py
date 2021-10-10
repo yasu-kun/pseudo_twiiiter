@@ -13,7 +13,7 @@ def tweet_get():
   #data=zip(tweet_list,date_list)
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                      
-  cur.execute('SELECT tweet,tweet_time,num_of_reply,mun_of_retweet,num_of_heart FROM tweet_table')
+  cur.execute('SELECT user_name,user_id,tweet,tweet_time,num_of_reply,mun_of_retweet,num_of_heart FROM tweet_table')
   out = cur.fetchall()
   out.reverse()
   con.commit()                                                                                                                               
@@ -31,12 +31,15 @@ def tweet_post():
   #JST = timezone(timedelta(hours=+9))
   jst = dt_utc.astimezone(timezone(timedelta(hours=+9)))
   tweet_time = jst.strftime('%Y/%m/%d %H:%M:%S')
+
+  user_name = 'default_user_name'
+  user_id = 'default_user_id'
   
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                   
-  cur.execute("INSERT into tweet_table (tweet, tweet_time) VALUES ('%s', '%s')" % (tweet, tweet_time))
+  cur.execute("INSERT into tweet_table (user_name, user_id, tweet, tweet_time) VALUES ('%s', '%s', '%s', '%s')" % (user_name, user_id, tweet, tweet_time))
 
-  cur.execute('SELECT tweet,tweet_time FROM tweet_table')
+  cur.execute('SELECT user_name, user_id, tweet, tweet_time FROM tweet_table')
   out = cur.fetchall()
   out.reverse()
 

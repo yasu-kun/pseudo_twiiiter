@@ -1,12 +1,12 @@
 
-    {% for tweet, tweet_time, num_of_reply, mun_of_retweet, num_of_heart in data %}
+    {% for user_name, user_id, tweet, tweet_time, num_of_reply, mun_of_retweet, num_of_heart in data %}
     <!-- 記事エリア -->
     <div class="twitter__block">
       <figure>
         <img src="static/images/icon.png" />
       </figure>
       <div class="twitter__block-text">
-        <div class="name">default_username<span class="name_reply">@user</span></div>
+        <div class="name">{{ user_name }}<span class="name_reply">@{{ user_id }}</span></div>
         <div class="date">{{ time }}</div>
         <div class="text">
           {{ tweet }}<br>
