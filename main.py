@@ -13,13 +13,13 @@ def tweet_get():
   #data=zip(tweet_list,date_list)
   con = sqlite3.connect('data.db') 
   cur = con.cursor()                                                                                                                      
-  cur.execute('SELECT * FROM tweet_table')
+  cur.execute('SELECT tweet,tweet_time,num_of_reply,mun_of_retweet,num_of_heart FROM tweet_table')
   out = cur.fetchall()
   out.reverse()
   con.commit()                                                                                                                               
   con.close()
 
-  return render_template('index.html',data=out)
+  return render_template('index.html',data=out, method='get')
 
 
 @app.route('/', methods=['POST'])
@@ -36,14 +36,14 @@ def tweet_post():
   cur = con.cursor()                                                                                                                   
   cur.execute("INSERT into tweet_table (tweet, tweet_time) VALUES ('%s', '%s')" % (tweet, tweet_time))
 
-  cur.execute('SELECT * FROM tweet_table')
+  cur.execute('SELECT tweet,tweet_time FROM tweet_table')
   out = cur.fetchall()
   out.reverse()
 
   con.commit()                                                                                                                               
   con.close()
 
-  return render_template('index.html',data=out)
+  return render_template('index.html',data=out, method='post')
 
 if __name__ == '__main__':
   app.run()
