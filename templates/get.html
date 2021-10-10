@@ -12,9 +12,15 @@
           {{ tweet }}<br>
         </div>
         <div class="twitter__icon">
-          <span class="twitter-bubble">{{ n_reply }}</span>
-          <span class="twitter-loop">{{ n_retweet }}</span>
-          <span class="twitter-heart">{{ n_heart }}</span>
+        {% if num_of_reply==None %}
+          <span class="twitter-bubble"></span>
+          <span class="twitter-loop"></span>
+          <span class="twitter-heart"></span>
+        {% else %}
+          <span class="twitter-bubble">{{ num_of_reply }}</span>
+          <span class="twitter-loop">{{ mun_of_retweet }}</span>
+          <span class="twitter-heart">{{ num_of_heart }}</span>
+        {% endif %}
         </div>
       </div>
     </div>
