@@ -11,7 +11,7 @@ run_with_ngrok(app)
 def tweet_get():
   #return 'Hello World!'
   #data=zip(tweet_list,date_list)
-  con = sqlite3.connect('data.db') 
+  con = sqlite3.connect('twitter_database.db') 
   cur = con.cursor()                                                                                                                      
   cur.execute('SELECT user_name,user_id,tweet,tweet_time,num_of_reply,mun_of_retweet,num_of_heart FROM tweet_table')
   out = cur.fetchall()
