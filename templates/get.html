@@ -1,5 +1,5 @@
 
-    {% for user_name, user_id, tweet, tweet_time, num_of_reply, mun_of_retweet, num_of_heart in data %}
+    {% for user_name, user_id, tweet, tweet_time, num_of_reply, num_of_retweet, num_of_heart in data %}
     <!-- 記事エリア -->
     <div class="twitter__block">
       <figure>
@@ -18,7 +18,7 @@
           <span class="twitter-heart"></span>
         {% else %}
           <span class="twitter-bubble">{{ num_of_reply }}</span>
-          <span class="twitter-loop">{{ mun_of_retweet }}</span>
+          <span class="twitter-loop">{{ num_of_retweet }}</span>
           <span class="twitter-heart">{{ num_of_heart }}</span>
         {% endif %}
         </div>
