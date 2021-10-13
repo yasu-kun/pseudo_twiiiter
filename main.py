@@ -37,7 +37,7 @@ def tweet_post():
   
   con = sqlite3.connect('twitter_database.db') 
   cur = con.cursor()                                                                                                                   
-  cur.execute("INSERT into tweet_table (user_name, user_id, tweet, tweet_time) VALUES ('%s', '%s', '%s', '%s')" % (user_name, user_id, tweet, tweet_time))
+  cur.execute("INSERT into tweet_table (user_name, user_id, tweet, tweet_time, num_of_reply, num_of_retweet, num_of_heart) VALUES ('%s', '%s', '%s', '%s', 0, 0, 0)" % (user_name, user_id, tweet, tweet_time))
 
   cur.execute('SELECT user_name, user_id, tweet, tweet_time FROM tweet_table')
   out = cur.fetchall()
